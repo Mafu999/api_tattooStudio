@@ -1,7 +1,8 @@
 const bd = require('./src/data/sqlite_bd')
 const Express = require('express')
 const cors = require('cors')
-const port = 4022
+//porta 4022
+const port = process.env.PORT
 const app = Express()
 const tattooController = require('./src/controllers/tattoo_controller')
 

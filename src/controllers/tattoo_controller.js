@@ -36,4 +36,31 @@ module.exports = (app, bd) =>{
         }
     })
 
+    app.delete('/tattoo/studio/delete/:ID', async(res, resp)=>{
+        try{
+            const id = res.params.ID
+
+            const respostaDeleteStudio = await daoTattoo.DeleteStudio(id)
+            resp.send(respostaDeleteStudio)
+
+        }catch(error){
+            resp.send(error)
+        }
+    })
+
+    app.put('/tattoo/studio/edit/:ID', async(res, resp)=>{
+        try{
+            const body = res.body
+            const params = [body.UNIDADE, body.RUA, body.NUMERO, body.BAIRRO, body.CIDADE, body.ESTADO, body.TELEFONE, body.FUNCIONARIOS, body.RECEITA, body.DESPESAS]
+
+            const id = res.params.ID
+
+            const respostaEditStudio = await daoTattoo.EditStudio(params, id)
+            resp.send(respostaEditStudio)
+
+        }catch(error){
+            resp.send(error)
+        }
+    })
+
 }
